@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerSpawn
   - ZoneAttack
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - UI
   - Sol
   - Boue
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
