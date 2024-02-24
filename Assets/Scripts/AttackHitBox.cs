@@ -9,6 +9,18 @@ public class AttackHitBox : MonoBehaviour
     private float timer = 0f;
     private float timeToAttack = 0.25f;
 
+    public static AttackHitBox instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de AttackHitBox dans la scène");
+            return;
+        }
+        instance = this;
+    }
+
     private void Update()
     {
         isAttacking = false;
