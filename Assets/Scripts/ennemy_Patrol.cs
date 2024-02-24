@@ -7,6 +7,8 @@ public class ennemy_Patrol : MonoBehaviour
     public float speed;
     public Transform[] waypoints;
 
+    public int damageOnCollision = 20;
+
     private Transform target;
     private int desPoint;
 
@@ -32,6 +34,15 @@ public class ennemy_Patrol : MonoBehaviour
             desPoint = (desPoint + 1) % waypoints.Length;
             target = waypoints[desPoint];
             graphic.flipX = !graphic.flipX;
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(damageOnCollision);
         }
     }
 }

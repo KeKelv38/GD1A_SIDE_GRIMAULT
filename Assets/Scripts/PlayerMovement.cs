@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,10 +13,23 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
 
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask groundLayer2;
+    public BoxCollider2D playerCollider;
+
+    public static PlayerMovement instance;
+
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y a plus d'une instance de PlayerMovement dans la scène");
+            return;
+        }
+        instance = this;
+    }
 
     // Update is called once per frame
     void Update()
@@ -24,16 +38,6 @@ public class PlayerMovement : MonoBehaviour
         move = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(speed * move, rb.velocity.y);
-
-        if (Input.GetKey(KeyCode.LeftArrow) && IsGrounded2())
-        {
-            rb.velocity = new Vector2((speed/2) * move, rb.velocity.y);
-        }
-
-        if (Input.GetKey(KeyCode.RightArrow) && IsGrounded2())
-        {
-            rb.velocity = new Vector2((speed/2) * move, rb.velocity.y);
-        }
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -60,12 +64,6 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
     }
-
-    private bool IsGrounded2()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer2);
-    }
-
     private void Flip()
     {
         if (isFacingRight && move < 0f || !isFacingRight && move > 0f)
