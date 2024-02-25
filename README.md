@@ -1,1 +1,1 @@
-Le jeu est disponible en téléchargement dans le fichier "Jeu". Les autres fichiers sont le dossier unity complet. Les assets et différentes créations 2D fait par moi-même sont regroupé dans le dossier "imports" de unity. 
+Le jeu est disponible en téléchargement dans le fichier "Jeu". Les autres fichiers sont le dossier unity complet. Les assets et différentes créations 2D fait par moi-même sont regroupé dans le dossier "assets">"imports" de unity. 
