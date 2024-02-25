@@ -21,4 +21,9 @@ public class Inventory : MonoBehaviour
         journalCount += count;
         journalCountText.text = journalCount.ToString();
     }
+    public void RemovePaper(int count)
+    {
+        journalCount -= count;
+        journalCountText.text = journalCount.ToString();
+    }
 }

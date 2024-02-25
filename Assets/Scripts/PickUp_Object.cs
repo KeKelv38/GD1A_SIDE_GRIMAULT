@@ -7,6 +7,7 @@ public class PickUp_Object : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Inventory.instance.AddJournal(1);
+            CurrentSceneManager.instance.paperPickedUpCount++;
             Destroy(gameObject);
         }
     }

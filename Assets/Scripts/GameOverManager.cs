@@ -32,7 +32,9 @@ public class GameOverManager : MonoBehaviour
 
     public void ReplayButton()
     {
+        Inventory.instance.RemovePaper(CurrentSceneManager.instance.paperPickedUpCount);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PlayerHealth.instance.Respawn();
         gameOverUI.SetActive(false);
     }
 

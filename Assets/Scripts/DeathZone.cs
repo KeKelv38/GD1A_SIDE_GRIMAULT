@@ -12,7 +12,18 @@ public class DeathZone : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.transform.position = playerSpawn.position;
+            PlayerHealth.instance.currentHealth = 0;
+            PlayerHealth.instance.healthBar.SetHealth(PlayerHealth.instance.currentHealth);
+            DieEau();
         }
+    }
+    public void DieEau()
+    {
+        PlayerMovement.instance.enabled = false;
+        PlayerMovement.instance.animator.SetTrigger("Death");
+        PlayerMovement.instance.playerCollider.enabled = false;
+        GameOverManager.instance.OnPlayerDeath();
+        AttackHitBox.instance.enabled = false;
+
     }
 }
